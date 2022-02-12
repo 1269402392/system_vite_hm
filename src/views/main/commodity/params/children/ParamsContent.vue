@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <n-card title="算了为了项目完整还是写吧" style="margin-bottom: 16px">
+    <n-card title="一起长大的约定" style="margin-bottom: 16px">
       <n-tabs v-model:value="tabValue" type="line" @before-leave="tabBeforeLeave">
         <n-tab-pane name="only" tab="动态参数"> </n-tab-pane>
         <n-tab-pane name="many" tab="静态参数"> </n-tab-pane>
@@ -31,17 +31,17 @@ import { computed, defineComponent, h, onActivated, ref, watch } from 'vue'
 import LyTable from '@/components/ly-table/src/LyTable.vue'
 import { contentConfig } from '../config/content-config'
 import { usePageModel } from '@/hook/usePageModel'
-import BaseHeader from '@/components/base-header/src/BaseHeader.vue'
 import { usePageContent } from '@/hook/usePageContent'
+import { showMessage } from '@/hook/useShowMessage'
+import { modelConfig } from '../config/model-config'
 import {
   handleDeleteRequest,
   handlePostRequest,
   handlePutRequest
 } from '@/service/request'
-import { showMessage } from '@/hook/useShowMessage'
-import { modelConfig } from '../config/model-config'
-import PageModel from '@/components/page-model'
 import { NButton } from 'naive-ui'
+import PageModel from '@/components/page-model'
+import BaseHeader from '@/components/base-header/src/BaseHeader.vue'
 import ParamsModel from '@/views/main/commodity/params/children/ParamsModel.vue'
 export default defineComponent({
   name: 'ParamsContent',
@@ -69,10 +69,8 @@ export default defineComponent({
       useInsertData,
       useUpdateData
     } = usePageModel(undefined, undefined, deleteCbFn)
-
-    onActivated(() => {
-      mainStore.dataList = []
-    })
+    mainStore.pageName = 'attribute'
+    mainStore.dataList = []
 
     const contentConfigRef = computed(() => {
       contentConfig.table.columns.some((item: any) => {

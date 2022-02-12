@@ -8,7 +8,7 @@
         </n-layout-header>
         <n-layout-content class="ly-content">
           <router-view v-slot="{ Component }">
-            <keep-alive exclude="HandleGoods, Params">
+            <keep-alive exclude="HandleGoods,Params">
               <Component :is="Component" />
             </keep-alive>
           </router-view>

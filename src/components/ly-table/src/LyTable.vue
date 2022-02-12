@@ -13,7 +13,18 @@
       :pagination="isPagination ? pagination : false"
       :on-update:page="updatePage"
       :on-update:checked-row-keys="checkedUpdate"
-    />
+    >
+      <template #empty>
+        <div class="empty-box">
+          <n-icon :size="80" color="rgb(224,227,233)">
+            <bicycle />
+          </n-icon>
+          <div style="color: #999999">
+            数据好像骑自行车跑了, 已经派人跑步去追了......
+          </div>
+        </div>
+      </template>
+    </n-data-table>
   </div>
 </template>
 
@@ -21,12 +32,14 @@
 import { computed, defineComponent, PropType, ref, watchEffect } from 'vue'
 import { useMain } from '@/store/main'
 import { DataTableColumn } from 'naive-ui'
+import { Bicycle } from '@element-plus/icons-vue'
 export interface IPageInfo {
   pagenum: number
   pagesize: number
 }
 export default defineComponent({
   name: 'LyTable',
+  components: { Bicycle },
   props: {
     data: {
       type: Object,
