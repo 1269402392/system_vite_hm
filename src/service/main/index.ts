@@ -20,10 +20,15 @@ class LYRequest {
       config.headers!.Authorization = cache.getCache('token')
       return config
     })
-    this.instance.interceptors.response.use((res) => {
-      if (this.isLoading) nprogress.done()
-      return res.data
-    })
+    this.instance.interceptors.response.use(
+      (res) => {
+        if (this.isLoading) nprogress.done()
+        return res.data
+      },
+      (error) => {
+        ;(window as any).$message.error('发生错误，服务器启动没有?')
+      }
+    )
 
     this.instance.interceptors.request.use(this.interceptors?.requestInterceptors)
     this.instance.interceptors.response.use(this.interceptors?.responseInterceptors)
@@ -35,9 +40,7 @@ class LYRequest {
       config.interceptors?.responseInterceptors
     )
     return new Promise<any>((resolve, reject) => {
-      // setTimeout(() => {
       resolve(this.instance.request<any, T>(config))
-      // }, 0)
     })
   }
   get<T>(config: IRequestConfig) {

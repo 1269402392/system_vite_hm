@@ -49,7 +49,7 @@ const useLogin = defineStore('login', {
         }
       } catch (e) {
         loading.destroy()
-        ;(window as any).$message.error('网络异常')
+        // ;(window as any).$message.error('网络异常')
       }
     },
     // 解决刷新数据丢失问题
