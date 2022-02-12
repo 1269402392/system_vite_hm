@@ -31,12 +31,7 @@
               忘记密码
             </n-gradient-text>
           </div>
-          <n-button
-            type="info"
-            :disabled="isLoading"
-            block
-            @click="submitClick"
-          >
+          <n-button type="info" :disabled="isLoading" block @click="submitClick">
             <n-spin v-if="isLoading" stroke="white" size="small" />
             <span>{{ isLoading ? '正在登录' : '登陆' }}</span>
           </n-button>

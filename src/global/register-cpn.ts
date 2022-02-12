@@ -48,7 +48,8 @@ import {
   NTimePicker,
   NTree,
   NUpload,
-  NUploadDragger
+  NUploadDragger,
+  NResult
 } from 'naive-ui'
 export const native = create({
   components: [
@@ -102,6 +103,7 @@ export const native = create({
     NDescriptions,
     NDescriptionsItem,
     NTag,
-    NSkeleton
+    NSkeleton,
+    NResult
   ]
 })
